@@ -10,7 +10,7 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
         return "window_id"
 
     def placeholder(self):
-        return "Chosse a window"
+        return "Choose a window"
 
     def list_items(self):
         items = []
