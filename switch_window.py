@@ -33,7 +33,7 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
                 elif view.name():
                     active_file_name = view.name()
 
-            project_file_name = window.project_file_name()
+            project_file_name = window.workspace_file_name()
             if project_file_name:
                 title = os.path.splitext(os.path.basename(project_file_name))[0]
                 kind = kind_project
