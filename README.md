@@ -32,3 +32,14 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 
 or hit <kbd>ctrl+k</kbd>, <kbd>ctrl+tab</kbd> in sequence
 to show the `Switch Window` Quick Panel directly.
+
+## Kind Info
+
+The kind of a window is displayed via icon.
+
+| icon | description
+|:----:|:---
+| P    | A project/workspace is opened in the window
+| F    | One or more folders are opened in the window. The best matching one according to the active file is displayed in description line.
+| f    | A file is displayed in active view of a window, which has no project or folder open.
+| S    | An unsaved view is displayed in active view of a window, which has no project or folder open.

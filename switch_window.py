@@ -16,7 +16,9 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
         items = []
 
         kind_project = [sublime.KIND_ID_NAMESPACE, "P", "Project"]
-        kind_file = [sublime.KIND_ID_NAVIGATION, "F", "File"]
+        kind_folder = [sublime.KIND_ID_NAMESPACE, "F", "Folder"]
+        kind_file = [sublime.KIND_ID_NAVIGATION, "f", "File"]
+        kind_scratch = [sublime.KIND_ID_AMBIGUOUS, "S", "Scratch"]
 
         active_window = sublime.active_window()
         for window in sublime.windows():
@@ -41,10 +43,10 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
 
             else:
                 title = active_file_name
-                kind = kind_file
 
                 folders = window.folders()
                 if folders:
+                    kind = kind_folder
                     for folder in window.folders():
                         if active_file_name.startswith(folder):
                             second_line = f"Folder: {folder}"
@@ -52,9 +54,11 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
                     else:
                         second_line = f"Folder: {folders[0]}"
                 elif active_file_location:
+                    kind = kind_file
                     second_line = f"Location: {active_file_location}"
                 else:
-                    second_line = "Scratch"
+                    kind = kind_scratch
+                    second_line = "Scratch Window"
 
             items.append(
                 sublime.ListInputItem(
