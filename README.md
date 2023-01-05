@@ -17,7 +17,7 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 
 ### Manual Install
 
-1. Download [Switch Window.sublime-package](https://github.com/SublimeText/Liquid/releases).
+1. Download [Switch Window.sublime-package](https://github.com/SublimeText/SwitchWindow/releases).
 2. Copy it into _Installed Packages_ directory
    
 > To find _Installed Packages_...
