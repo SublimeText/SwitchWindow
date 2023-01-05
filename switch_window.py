@@ -18,7 +18,11 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
         kind_project = [sublime.KIND_ID_NAMESPACE, "P", "Project"]
         kind_file = [sublime.KIND_ID_NAVIGATION, "F", "File"]
 
+        active_window = sublime.active_window()
         for window in sublime.windows():
+            if window == active_window:
+                continue
+
             active_file_location = None
             active_file_name = "untitled"
             view = window.active_view()
