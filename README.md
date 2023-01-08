@@ -1,11 +1,11 @@
 # Switch Window
 
-A Sublime Text plugin which lets you 
-quickly switch between open Sublime Text windows 
-via Command Palette without having to press <kbd>cmd+~</kbd> on MacOS 
-or <kbd>alt+tab</kbd> on Linuy/Windows.
+A Sublime Text plugin to quickly switch between open Sublime Text windows 
+via Command Palette without having to press <kbd>command ~</kbd> (MacOS) 
+or <kbd>alt+tab</kbd> (Linux/Windows) repetitively.
 
 ![](preview.png)
+
 ## Installation
 
 ### Package Control
@@ -19,12 +19,42 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 ### Manual Install
 
 1. Download [Switch Window.sublime-package](https://github.com/SublimeText/SwitchWindow/releases).
-2. Copy it into _Installed Packages_ directory
+2. Rename downloaded file to `Switch Window.sublime-package`
+3. Copy it into _Installed Packages_ directory
    
 > To find _Installed Packages_...
 >
 > 1. call _Menu > Preferences > Browse Packages.._
 > 2. Navigate to parent folder
+
+### Clone git repository
+
+You can clone this repository into your _Sublime Text/Packages_
+
+> **Note**
+>
+> To find _Packages_ folder call _Menu > Preferences > Browse Packages..._
+
+##### Mac OS
+
+```shell
+cd ~/Library/Application\ Support/Sublime\ Text/Packages/
+git clone https://github.com/SublimeText/SwitchWindow.git "Switch Window"
+```
+
+##### Linux
+
+```shell
+cd ~/.config/sublime-text/Packages
+git clone https://github.com/SublimeText/SwitchWindow.git "Switch Window"
+```
+
+##### Windows
+
+```shell
+cd "%APPDATA%\Sublime Text\Packages"
+git clone https://github.com/SublimeText/SwitchWindow.git "Switch Window"
+```
 
 ## Usage
 
