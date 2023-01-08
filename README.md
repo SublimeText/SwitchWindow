@@ -1,8 +1,9 @@
 # Switch Window
 
 A Sublime Text plugin which lets you 
-quickly switch between windows 
-via Command Palette or key bindings.
+quickly switch between open Sublime Text windows 
+via Command Palette without having to press <kbd>cmd+~</kbd> on MacOS 
+or <kbd>alt+tab</kbd> on Linuy/Windows.
 
 ![](preview.png)
 ## Installation
