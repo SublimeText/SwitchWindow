@@ -6,5 +6,29 @@
 			{ "caption": "-", "id": "window" },
 			{ "caption": "Switch Window…", "command": "switch_window" }
 		]
+	},
+	{
+		"id": "preferences",
+		"children": [
+			{
+				"caption": "Package Settings",
+				"id": "package-settings",
+				"children": [
+					{
+						"caption": "Switch Window",
+						"children": [
+							{
+								"caption": "Key Bindings",
+								"command": "edit_settings",
+								"args": {
+									"base_file": "${packages}/Switch Window/Default ($platform).sublime-keymap",
+									"default": "// Bindings in here override those in \"Default/Default ($platform).sublime-keymap\"\n[\n\t$0\n]\n"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
 	}
 ]

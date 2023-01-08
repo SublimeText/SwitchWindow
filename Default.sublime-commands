@@ -7,8 +7,8 @@
 		"caption": "Preferences: Switch Window Key Bindings",
 		"command": "edit_settings",
 		"args": {
-			"base_file": "${packages}/Switch Window/Default.sublime-keymap",
-			"default": "// Bindings in here override those in \"Default/Default.sublime-keymap\"\n[\n\t$0\n]\n"
+			"base_file": "${packages}/Switch Window/Default ($platform).sublime-keymap",
+			"default": "// Bindings in here override those in \"Default/Default ($platform).sublime-keymap\"\n[\n\t$0\n]\n"
 		}
 	},
 ]
