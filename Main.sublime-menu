@@ -1,10 +1,13 @@
 [
 	{
-		"id": "file",
+		"id": "goto",
 		"children":
 		[
-			{ "caption": "-", "id": "window" },
-			{ "caption": "Switch Window…", "command": "switch_window" }
+			{
+				"caption": "Switch Window…",
+				"command": "show_overlay",
+				"args": {"overlay": "command_palette", "command": "switch_window"}
+			}
 		]
 	},
 	{
