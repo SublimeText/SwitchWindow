@@ -1,11 +1,11 @@
 import os
+from pathlib import Path
 
 import sublime
 import sublime_plugin
 
 
 class WindowInputHandler(sublime_plugin.ListInputHandler):
-
     def name(self):
         return "window_id"
 
@@ -13,68 +13,77 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
         return "Choose a window"
 
     def list_items(self):
-        items = []
-
-        kind_project = [sublime.KIND_ID_NAMESPACE, "P", "Project"]
-        kind_folder = [sublime.KIND_ID_NAMESPACE, "F", "Folder"]
-        kind_file = [sublime.KIND_ID_NAVIGATION, "f", "File"]
-        kind_scratch = [sublime.KIND_ID_AMBIGUOUS, "S", "Scratch"]
-
-        active_window = sublime.active_window()
-        for window in sublime.windows():
-            if window == active_window:
-                continue
-
-            active_file_location = None
-            active_file_name = "untitled"
+        def active_file(window):
             view = window.active_view()
-            if view:
-                file_name = view.file_name()
-                if file_name:
-                    active_file_location, active_file_name = os.path.split(file_name)
-                elif view.name():
-                    active_file_name = view.name()
+            if not view:
+                return (None, None)
+            try:
+                file = Path(view.file_name())
+                return (file.parent, file.name)
+            except:
+                return (None, view.name())
 
-            project_file_name = window.workspace_file_name()
-            if project_file_name:
-                title = os.path.splitext(os.path.basename(project_file_name))[0]
-                kind = kind_project
-                second_line = f"Active File: {active_file_name}"
+        def active_folder(folders, active_file_path):
+            if active_file_path:
+                for folder in folders:
+                    try:
+                        folder = Path(folder)
+                        active_file_path.relative_to(folder)
+                        return folder
+                    except ValueError:
+                        continue
+            return Path(folders[0])
+
+        def transform_folder(folder):
+            try:
+                home = "USERPROFILE" if os.name == "nt" else "HOME"
+                return f"~{os.sep}{folder.relative_to(os.getenv(home, ''))}"
+            except ValueError:
+                return folder
+
+        def create_item(window):
+            active_file_path, active_file_name = active_file(window)
+            folders = window.folders()
+            workspace = window.workspace_file_name()
+
+            if workspace:
+                title = Path(workspace).stem
+                kind = [sublime.KIND_ID_NAMESPACE, "P", "Project"]
+                if folders:
+                    second_line = transform_folder(
+                        active_folder(folders, active_file_path)
+                    )
+                else:
+                    second_line = "No folders in project yet!"
+
+            elif folders:
+                folder = active_folder(folders, active_file_path)
+                title = folder.name
+                kind = [sublime.KIND_ID_NAVIGATION, "F", "Folder"]
+                second_line = transform_folder(folder)
+
+            elif active_file_path:
+                title = active_file_name
+                kind = [sublime.KIND_ID_NAVIGATION, "f", "File"]
+                second_line = transform_folder(active_file_path)
 
             else:
                 title = active_file_name
+                kind = [sublime.KIND_ID_AMBIGUOUS, "S", "Scratch"]
+                second_line = "Scratch Window"
 
-                folders = window.folders()
-                if folders:
-                    kind = kind_folder
-                    for folder in window.folders():
-                        if active_file_name.startswith(folder):
-                            second_line = f"Folder: {folder}"
-                            break
-                    else:
-                        second_line = f"Folder: {folders[0]}"
-                elif active_file_location:
-                    kind = kind_file
-                    second_line = f"Location: {active_file_location}"
-                else:
-                    kind = kind_scratch
-                    second_line = "Scratch Window"
-
-            items.append(
-                sublime.ListInputItem(
-                    text=title,
-                    value=window.id(),
-                    annotation=f"Window {window.id()}",
-                    kind=kind,
-                    details=[second_line]
-                )
+            return sublime.ListInputItem(
+                text=title or "untitled",
+                value=window.id(),
+                annotation=f"Window {window.id()}",
+                kind=kind,
+                details=[f"<i>{second_line}</i>"],
             )
 
-        return items
+        return [create_item(window) for window in sublime.windows()]
 
 
 class SwitchWindowCommand(sublime_plugin.ApplicationCommand):
-
     def input_description(self):
         return "Switch Window"
 
@@ -88,6 +97,3 @@ class SwitchWindowCommand(sublime_plugin.ApplicationCommand):
             if window.id() == window_id:
                 window.bring_to_front()
                 break
-
-    def is_enabled(self):
-        return len(sublime.windows()) > 1
