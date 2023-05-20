@@ -4,6 +4,8 @@ from pathlib import Path
 import sublime
 import sublime_plugin
 
+_history = []
+
 
 class WindowInputHandler(sublime_plugin.ListInputHandler):
     def name(self):
@@ -80,7 +82,8 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
                 details=[f"<i>{second_line}</i>"],
             )
 
-        return [create_item(window) for window in sublime.windows()]
+        # add current window to the end of the selection list
+        return [create_item(window) for window in _history[1:]] + [create_item(_history[0])]
 
 
 class SwitchWindowCommand(sublime_plugin.ApplicationCommand):
@@ -97,3 +100,39 @@ class SwitchWindowCommand(sublime_plugin.ApplicationCommand):
             if window.id() == window_id:
                 window.bring_to_front()
                 break
+
+
+class SwitchWindowListener(sublime_plugin.EventListener):
+    def on_activated(self, view):
+        global _history
+
+        window = view.window()
+        if not window:
+            return
+
+        windows = sublime.windows()
+
+        # add missing windows to stack
+        for w in windows:
+            if w not in _history:
+                _history.append(w)
+
+        # remove closed windows from stack
+        for w in _history:
+            if w not in windows:
+                _history.remove(w)
+
+        # abort on empty stack
+        if not _history:
+            return
+
+        # abort if active window is already on top
+        if window == _history[0]:
+            return
+
+        # move active window to top
+        try:
+            _history.remove(window)
+        except:
+            pass
+        _history.insert(0, window)
