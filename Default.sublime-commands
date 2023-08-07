@@ -4,6 +4,11 @@
 		"command": "switch_window"
 	},
 	{
+		"caption": "Switch: To Previous Window",
+		"command": "switch_window",
+		"args": { "previous_window": true },
+	},
+	{
 		"caption": "Preferences: Switch Window Key Bindings",
 		"command": "edit_settings",
 		"args": {

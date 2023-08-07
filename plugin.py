@@ -91,11 +91,24 @@ class SwitchWindowCommand(sublime_plugin.ApplicationCommand):
         return "Switch Window"
 
     def input(self, args):
-        if args.get("window_id") is None:
+        if 'previous_window' not in args and args.get("window_id") is None:
             return WindowInputHandler()
         return None
 
-    def run(self, window_id=None):
+    def run(self, previous_window=False, window_id=None):
+        """
+        Execute `switch_window` command
+
+        :param previous_window:
+            If ``true`` directly switch to previous window.
+        :param window_id:
+            The window identifier of the window to switch to.
+        """
+        if previous_window:
+            if len(_history) >= 2:
+                _history[1].bring_to_front()
+            return
+
         for window in sublime.windows():
             if window.id() == window_id:
                 window.bring_to_front()

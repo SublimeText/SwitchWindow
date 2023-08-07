@@ -3,5 +3,10 @@
 		"keys": ["ctrl+k", "ctrl+tab"],
 		"command": "show_overlay",
 		"args": {"overlay": "command_palette", "command": "switch_window"}
+	},
+	{
+		"keys": ["ctrl+k", "ctrl+\\"],
+		"command": "switch_window",
+		"args": {"previous_window": true}
 	}
 ]
