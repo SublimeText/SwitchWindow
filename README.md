@@ -22,12 +22,14 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 2. Rename downloaded file to `Switch Window.sublime-package` _(by removeing intermediate period)_
 3. Copy it into _Installed Packages_ directory
 
+> [!NOTE]
+> 
 > To find _Installed Packages_...
 >
 > 1. call _Menu > Preferences > Browse Packages.._
 > 2. Navigate to parent folder
 
-> **Warning**
+> [!WARNING]
 >
 > Package Control doesn't update manually installed packages.
 
@@ -35,7 +37,7 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 
 You can clone this repository into your _Sublime Text/Packages_
 
-> **Note**
+> [!NOTE]
 >
 > To find _Packages_ folder call _Menu > Preferences > Browse Packages..._
 
@@ -60,7 +62,7 @@ cd "%APPDATA%\Sublime Text\Packages"
 git clone https://github.com/SublimeText/SwitchWindow.git "Switch Window"
 ```
 
-> **Note**
+> [!NOTE]
 >
 > Package Control updates cloned packages only,
 > if `ignore_vcs_packages` setting is `true`
