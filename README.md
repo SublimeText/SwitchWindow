@@ -71,7 +71,7 @@ git clone https://github.com/SublimeText/SwitchWindow.git "Switch Window"
 ## Usage
 
 1. Open `Command Palette` using <kbd>ctrl+shift+P</kbd> or menu item `Tools → Command Palette...`
-2. Type `Switch: Window` and hit <kbd>enter</kbd>
+2. Type `Window: Switch Window` and hit <kbd>enter</kbd>
 
 or hit <kbd>ctrl+k</kbd>, <kbd>ctrl+tab</kbd> in sequence
 to show the `Switch Window` Quick Panel directly.

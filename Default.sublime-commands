@@ -1,10 +1,10 @@
 [
 	{
-		"caption": "Switch: Window",
+		"caption": "Window: Switch Window",
 		"command": "switch_window"
 	},
 	{
-		"caption": "Switch: To Previous Window",
+		"caption": "Window: Previous Window",
 		"command": "switch_window",
 		"args": { "previous_window": true },
 	},
