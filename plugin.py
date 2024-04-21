@@ -86,6 +86,20 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
         return [create_item(window) for window in _history[1:]] + [create_item(_history[0])]
 
 
+class CloseOtherWindowsCommand(sublime_plugin.ApplicationCommand):
+    def is_enabled(self):
+        return len(sublime.windows()) > 1
+
+    def run(self):
+        """
+        Execute `close_other_windows` command
+        """
+        window_id = sublime.active_window().id()
+        for window in sublime.windows():
+            if window.id() != window_id:
+                window.run_command("close_window")
+
+
 class PromptCloseWindowCommand(sublime_plugin.ApplicationCommand):
     def input_description(self):
         return "Close Window"

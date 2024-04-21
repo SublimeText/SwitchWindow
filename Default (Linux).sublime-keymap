@@ -5,6 +5,10 @@
 		"args": {"overlay": "command_palette", "command": "prompt_close_window"}
 	},
 	{
+		"keys": ["alt+shift+f4"],
+		"command": "close_other_windows"
+	},
+	{
 		"keys": ["ctrl+k", "ctrl+tab"],
 		"command": "show_overlay",
 		"args": {"overlay": "command_palette", "command": "switch_window"}

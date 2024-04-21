@@ -4,6 +4,10 @@
 		"command": "prompt_close_window"
 	},
 	{
+		"caption": "Window: Close Other Windows",
+		"command": "close_other_windows"
+	},
+	{
 		"caption": "Window: Switch Window",
 		"command": "switch_window"
 	},
