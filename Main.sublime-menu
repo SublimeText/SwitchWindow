@@ -1,5 +1,16 @@
 [
 	{
+		"id": "file",
+		"children": [
+			{ "caption": "-", "id": "window" },
+			{
+				"caption": "Close Any Window…",
+				"command": "show_overlay",
+				"args": {"overlay": "command_palette", "command": "prompt_close_window"}
+			}
+		]
+	},
+	{
 		"id": "goto",
 		"children":
 		[

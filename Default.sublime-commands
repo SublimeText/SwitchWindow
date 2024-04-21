@@ -1,5 +1,9 @@
 [
 	{
+		"caption": "Window: Close Any Window",
+		"command": "prompt_close_window"
+	},
+	{
 		"caption": "Window: Switch Window",
 		"command": "switch_window"
 	},

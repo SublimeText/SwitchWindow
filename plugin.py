@@ -86,6 +86,28 @@ class WindowInputHandler(sublime_plugin.ListInputHandler):
         return [create_item(window) for window in _history[1:]] + [create_item(_history[0])]
 
 
+class PromptCloseWindowCommand(sublime_plugin.ApplicationCommand):
+    def input_description(self):
+        return "Close Window"
+
+    def input(self, args):
+        if "window_id" not in args:
+            return WindowInputHandler()
+        return None
+
+    def run(self, window_id):
+        """
+        Execute `prompt_close_window` command
+
+        :param window_id:
+            The window identifier of the window to close.
+        """
+        for window in sublime.windows():
+            if window.id() == window_id:
+                window.run_command("close_window")
+                break
+
+
 class SwitchWindowCommand(sublime_plugin.ApplicationCommand):
     def input_description(self):
         return "Switch Window"

@@ -1,5 +1,10 @@
 [
 	{
+		"keys": ["ctrl+alt+f4"],
+		"command": "show_overlay",
+		"args": {"overlay": "command_palette", "command": "prompt_close_window"}
+	},
+	{
 		"keys": ["ctrl+k", "ctrl+tab"],
 		"command": "show_overlay",
 		"args": {"overlay": "command_palette", "command": "switch_window"}
